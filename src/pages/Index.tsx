@@ -21,12 +21,26 @@ const copyEmail = () => {
   navigator.clipboard.writeText('erickalvarengabonifacio@hotmail.com');
 }
 
+const words = [
+  { code: "ДЛФЩЦ", real: "vamos" },
+  { code: "ГЖЗЫКЛПЫЯ", real: "construir" },
+  { code: "ЧШФЦ", real: "algo" },
+  { code: "ЩЦЛПЧЖФ", real: "incrível" }
+];
+
+
 export default function Portfolio() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
+
+  const [revealedIndex, setRevealedIndex] = useState<number | null>(null);
+
+  const handleHover = (index: number | null) => {
+    setRevealedIndex(index);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -121,6 +135,57 @@ export default function Portfolio() {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* About me */}
+      <section
+        id="about"
+        className="py-24 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5"
+      >
+        <div className="container px-4 md:px-6 max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-foreground">
+            Sobre mim
+          </h2>
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            Tenho 20 anos, sou estudante de Sistemas de Informação na UNIFEI e atualmente atuo com desenvolvimento fullstack.
+            Gosto de entender o problema antes de sair codando, e me sinto motivado quando consigo transformar ideias em soluções funcionais.
+            Curto aprender coisas novas e me desafiar em projetos que envolvam tanto o backend quanto a interface — principalmente com Laravel, React e Docker.
+          </p>
+          <blockquote className="hidden md:block text-xl md:text-2xl  font-semibold text-center my-12 text-muted-foreground">
+            {words.map((word, i) => (
+              <span
+                key={i}
+                className="group relative mx-2 cursor-pointer transition-all"
+                onMouseEnter={() => handleHover(i)}
+                onMouseLeave={() => handleHover(null)}
+                onTouchStart={() => handleHover(i)}
+                onTouchEnd={() => setTimeout(() => handleHover(null), 1200)}
+              >
+                {/* Texto real: visível só no md+ e só quando hovered */}
+                <span
+                  className={`
+                    absolute inset-0 flex items-center justify-center transition-opacity duration-600
+                    ${revealedIndex === i ? "opacity-100 blur-[0.5px] drop-shadow-md text-foreground" : "opacity-0"}
+                  `}
+                >
+                  {word.real}
+                </span>
+
+                {/* Texto codificado: sempre visível no mobile, no desktop esconde se hovered */}
+                <span
+                  className={`
+                    transition-opacity duration-600
+                    ${revealedIndex === i ? "opacity-0" : "opacity-100"}
+                    inline-block
+                  `}
+                  style={{ visibility: revealedIndex === i ? "hidden" : "visible" }}
+                >
+                  {word.code}
+                </span>
+              </span>
+            ))}
+          </blockquote>
         </div>
       </section>
 
