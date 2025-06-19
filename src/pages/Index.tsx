@@ -138,13 +138,13 @@ export default function Portfolio() {
           <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-2">
             <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-foreground">Desenvolvedor Fullstack</CardTitle>
+                <div className="flex flex-wrap gap-1 items-center justify-end">
                   <Badge variant="outline">
                     <Calendar className="mr-1 h-3 w-3" />
                     05/2024 - Hoje
                   </Badge>
                 </div>
+                <CardTitle className="text-foreground">Desenvolvedor Fullstack</CardTitle>
                 <CardDescription>Support Informática</CardDescription>
               </CardHeader>
               <CardContent>
@@ -162,13 +162,13 @@ export default function Portfolio() {
 
             <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-foreground">Agente de Inovação</CardTitle>
+                <div className="flex flex-wrap gap-1 items-center justify-end">
                   <Badge variant="outline">
                     <Calendar className="mr-1 h-3 w-3" />
                     2023 - 2024
                   </Badge>
                 </div>
+                <CardTitle className="text-foreground">Agente de Inovação</CardTitle>
                 <CardDescription>Centro de Empreendedorismo UNIFEI (CEU)</CardDescription>
               </CardHeader>
               <CardContent>
@@ -186,14 +186,14 @@ export default function Portfolio() {
 
             <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-foreground">Projetos Pessoais</CardTitle>
+                <div className="flex flex-wrap gap-1 items-center justify-end">
                   <Badge variant="outline">
                     <Calendar className="mr-1 h-3 w-3" />
                     2024 - hoje
                   </Badge>
                 </div>
-                <CardDescription>By Erick</CardDescription>
+                <CardTitle className="text-foreground">Projetos Pessoais</CardTitle>
+                <CardDescription>By Erick Bonifácio</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -210,13 +210,13 @@ export default function Portfolio() {
 
             <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle className="text-foreground">Sistemas de Informação</CardTitle>
+                <div className="flex flex-wrap gap-1 items-center justify-end">
                   <Badge variant="outline">
                     <Calendar className="mr-1 h-3 w-3" />
                     2023 - hoje
                   </Badge>
                 </div>
+                <CardTitle className="text-foreground">Sistemas de Informação</CardTitle>
                 <CardDescription>Universidade Federal de Itajubá - UNIFEI</CardDescription>
               </CardHeader>
               <CardContent>
