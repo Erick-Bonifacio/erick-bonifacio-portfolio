@@ -3,8 +3,10 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, Download } from "lucide-react"
+import { Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Calendar, Download, Menu, X } from "lucide-react"
 import { SimpleThemeToggle } from "@/components/SimpleThemeToggle"
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const downloadCv = () => {
   const link = document.createElement('a');
@@ -20,38 +22,70 @@ const copyEmail = () => {
 }
 
 export default function Portfolio() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <div className="mr-4 flex">
-            <a className="mr-6 flex items-center space-x-2" href="#home">
-              <span className="font-bold text-foreground">Erick Bonifácio</span>
-            </a>
-          </div>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
-            <a href="#home" className="transition-colors hover:text-foreground/80 text-foreground story-link">
-              Início
-            </a>
-            <a
-              href="#experience"
-              className="transition-colors hover:text-foreground/80 text-foreground story-link"
-            >
-              Experiência
-            </a>
-            <a href="#projects" className="transition-colors hover:text-foreground/80 text-foreground story-link">
-              Projetos
-            </a>
-            <a href="#contact" className="transition-colors hover:text-foreground/80 text-foreground story-link">
-              Contato
-            </a>
+        <div className="container mx-auto flex h-14 items-center justify-between px-4 sm:px-6">
+          {/* Nome */}
+          <a href="#home" className="font-bold text-foreground text-sm sm:text-base">
+            Erick Bonifácio
+          </a>
+
+          {/* Menu desktop */}
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <a href="#home" className="hover:text-foreground/80 text-foreground" onClick={closeMenu}>Início</a>
+            <a href="#experience" className="hover:text-foreground/80 text-foreground" onClick={closeMenu}>Experiência</a>
+            <a href="#projects" className="hover:text-foreground/80 text-foreground" onClick={closeMenu}>Projetos</a>
+            <a href="#contact" className="hover:text-foreground/80 text-foreground" onClick={closeMenu}>Contato</a>
           </nav>
-          <div className="ml-auto">
+
+          {/* Toggle + Hamburguer */}
+          <div className="flex items-center gap-4 md:gap-6">
             <SimpleThemeToggle />
+
+            {/* Botão hamburguer - só mobile */}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden p-2 focus:outline-none"
+              aria-label="Menu"
+            >
+              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Menu mobile */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden bg-background border-t px-4 py-4 space-y-4 text-sm font-medium"
+            >
+              {["#home", "#experience", "#projects", "#contact"].map((href, i) => (
+                <a
+                  key={href}
+                  href={href}
+                  onClick={closeMenu}
+                  className="block text-foreground hover:text-foreground/80 transition-colors duration-200"
+                >
+                  {["Início", "Experiência", "Projetos", "Contato"][i]}
+                </a>
+              ))}
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
+
 
       {/* Hero Section */}
       <section id="home" className="py-24 md:py-32 bg-gradient-to-br from-primary/5 via-background to-secondary/5">
@@ -72,7 +106,7 @@ export default function Portfolio() {
               <Badge variant="secondary" className="hover-scale">Laravel</Badge>
               <Badge variant="secondary" className="hover-scale">Python</Badge>
             </div>
-            <div className="space-x-4 animate-fade-in">
+            <div className="flex flex-wrap gap-4 justify-center animate-fade-in">
               <Button className="hover-scale" title="Copiar email" onClick={copyEmail}>
                 <Mail className="mr-2 h-4 w-4" />
                 <a href="#contact" >Entre em Contato</a>
@@ -102,7 +136,7 @@ export default function Portfolio() {
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-2">
-            <Card className="h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-foreground">Desenvolvedor Fullstack</CardTitle>
@@ -126,7 +160,7 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            <Card className="h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-foreground">Agente de Inovação</CardTitle>
@@ -135,7 +169,7 @@ export default function Portfolio() {
                     2023 - 2024
                   </Badge>
                 </div>
-                <CardDescription>Centro de Empreendedorismo UNIFEi (CEU)</CardDescription>
+                <CardDescription>Centro de Empreendedorismo UNIFEI (CEU)</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -150,7 +184,7 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            <Card className="h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-foreground">Projetos Pessoais</CardTitle>
@@ -174,7 +208,7 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            <Card className="h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[300px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-foreground">Sistemas de Informação</CardTitle>
@@ -212,7 +246,7 @@ export default function Portfolio() {
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl items-start gap-6 py-12 lg:grid-cols-2">
-            <Card className="h-[550px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[550px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-foreground">
                   QR Code Generator
@@ -242,7 +276,7 @@ export default function Portfolio() {
               </CardContent>
             </Card>
 
-            <Card className="h-[550px] hover-scale transition-all duration-300 hover:shadow-lg">
+            <Card className="min-h-fit md:min-h-[550px] hover-scale transition-all duration-300 hover:shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between text-foreground">
                   Landing Page Nutricional
