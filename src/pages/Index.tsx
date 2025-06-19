@@ -228,7 +228,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg mb-4 flex items-center justify-center ">
-                  <img src="src\pages\image.png" alt="Preview do projeto QR Code Generator" className="rounded-lg"/>
+                  <img src="/image.png" alt="Preview do projeto QR Code Generator" className="rounded-lg"/>
                 </div>
                 <p className="text-sm text-muted-foreground mb-4">
                   Sistema de geração de QR Codes personalizados, que não expiram e com estastísticas de scans! O sistema possui autenticação JWT e envio de emails (SMTP).
@@ -259,7 +259,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <div className="aspect-video bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-lg mb-4 flex items-center justify-center">
-                  <img src="src\pages\image2.png" alt="Preview do projeto Landing Page Nutricional" className="rounded-lg"/>
+                  <img src="/image2.png" alt="Preview do projeto Landing Page Nutricional" className="rounded-lg"/>
                 </div>
                 <p className="text-sm text-muted-foreground mb-4">
                   Aplicação estática visando área nutricional, expondo seções de contato, formação e apresentação. Desenvolvida com React e hospedada com Vercel.
