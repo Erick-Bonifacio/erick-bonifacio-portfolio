@@ -317,7 +317,7 @@ export default function Portfolio() {
               Entre em Contato
             </h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              Vamos conversar sobre seu próximo projeto ou oportunidade
+              Vamos conversar!
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-2">
