@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="41 76 118 118">
+  <!-- The post-it mascot's face, from src/components/Mascot.tsx, without limbs, brows or tilt so it reads at 16px. -->
+  <path fill="#ff606a" d="M53 80 H147 a8 8 0 0 1 8 8 V160 L125 190 H53 a8 8 0 0 1 -8 -8 V88 a8 8 0 0 1 8 -8 Z"/>
+  <path fill="#d9404b" d="M155 160 L125 190 L125 168 a8 8 0 0 1 8 -8 Z"/>
+  <circle cx="82" cy="124" r="14" fill="#fffdf6"/>
+  <circle cx="120" cy="124" r="14" fill="#fffdf6"/>
+  <circle cx="86" cy="122" r="7" fill="#2e2a3b"/>
+  <circle cx="124" cy="122" r="7" fill="#2e2a3b"/>
+  <path fill="#2e2a3b" d="M88 149 Q 101 153 114 149 Q 110 166 101 166 Q 92 166 88 149 Z"/>
+</svg>
