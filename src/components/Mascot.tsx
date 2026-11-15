@@ -1,52 +1,87 @@
-const dark = "#0a1a4a";
-const cream = "#f4ebdd";
-const body = "#ff606a";
-const limb = "#d9434f";
+const dark = "#2e2a3b";
+const limb = "#d9404b";
+const eye = "#fffdf6";
 
-// One arm bending out at the elbow and into a pocket; mirrored for the other side.
-const ArmInPocket = ({ mirror = false }: { mirror?: boolean }) => (
-  <g transform={mirror ? "translate(400 0) scale(-1 1)" : undefined}>
-    <path d="M78 318 C 40 346, 64 384, 128 392" fill="none" stroke={limb} strokeWidth="22" strokeLinecap="round" />
-    {/* pocket: a body-coloured patch hides the hand, the dark line is the opening */}
-    <path d="M152 370 Q 122 374 110 398 L 150 416 L 168 404 Z" fill={body} />
-    <path d="M152 370 Q 122 374 110 398" fill="none" stroke={dark} strokeWidth="7" strokeLinecap="round" />
-  </g>
-);
+// What changes from pose to pose. `look` moves the pupils; `smile` swaps the
+// open mouth for a small closed one; `ground` draws the shadow under the feet.
+const poses = {
+  // waving mid-stride, for the hero
+  wave: { viewBox: "15 65 175 200", arms: ["M150 122 Q 168 118 176 98", "M50 140 Q 34 146 28 162"], look: [0, 0], smile: false, seated: false, ground: true },
+  // one arm stretched out to its left, eyes following, next to a title
+  point: { viewBox: "2 65 188 200", arms: ["M52 134 L12 128", "M150 128 Q 166 138 166 158"], look: [-8, 3], smile: false, seated: false, ground: true },
+  // seated on a rule that passes at y=188, hands on it, legs dangling
+  sit: { viewBox: "15 65 175 175", arms: ["M50 138 Q 36 160 40 186", "M152 130 Q 168 156 164 186"], look: [0, 0], smile: false, seated: true, ground: false },
+  // coming up from behind an edge that passes at y=141, so only the top half
+  // shows. Its hands are a separate layer, PeekHands, drawn in front of the edge.
+  peek: { viewBox: "15 65 175 200", arms: [], look: [-2, 3], smile: false, seated: false, ground: false },
+};
 
-// The drop mascot: facing front, hands in pockets, smug half-lidded look. Decorative.
-export function Mascot() {
+// The post-it mascot: coral note with a folded corner. Shapes come from the
+// postit-FF606A.svg artwork, without its card background. Decorative.
+export function Mascot({ className = "mascot", pose = "wave" }: { className?: string; pose?: keyof typeof poses }) {
+  const p = poses[pose];
+  const [dx, dy] = p.look;
   return (
-    <svg className="mascot" viewBox="0 0 400 560" aria-hidden="true">
-      <ellipse cx="200" cy="526" rx="112" ry="11" fill="#050814" opacity="0.28" />
+    <svg className={className} viewBox={p.viewBox} aria-hidden="true">
+      {p.ground && <ellipse cx="102" cy="257" rx="58" ry="6" fill="#050814" opacity="0.28" />}
 
       {/* legs and shoes */}
-      <path d="M172 415 L168 500" stroke={limb} strokeWidth="26" />
-      <path d="M228 415 L232 500" stroke={limb} strokeWidth="26" />
-      <ellipse cx="158" cy="508" rx="32" ry="16" fill={dark} transform="rotate(-6 158 508)" />
-      <ellipse cx="242" cy="508" rx="32" ry="16" fill={dark} transform="rotate(6 242 508)" />
-
-      {/* body */}
-      <path d="M200 30 C 215 110, 330 190, 330 300 C 330 378, 270 436, 200 436 C 130 436, 70 378, 70 300 C 70 190, 185 110, 200 30 Z" fill={body} />
-      <path d="M112 250 C 122 210, 145 180, 172 160" fill="none" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="12" strokeLinecap="round" />
-      <ellipse cx="270" cy="326" rx="15" ry="9" fill="#ffffff" opacity="0.35" />
-
-      <ArmInPocket />
-      <ArmInPocket mirror />
-
-      {/* eyes: cream half-moons under heavy lids */}
-      <path d="M138 268 A 28 28 0 0 0 192 266 Z" fill={cream} />
-      <path d="M208 266 A 28 28 0 0 0 262 268 Z" fill={cream} />
-      <circle cx="168" cy="280" r="11" fill={dark} />
-      <circle cx="238" cy="280" r="11" fill={dark} />
-      <g fill="none" stroke={dark} strokeLinecap="round">
-        <path d="M131 269 L191 265" strokeWidth="9" />
-        <path d="M209 265 L269 269" strokeWidth="9" />
-        {/* brows: one flat, one raised */}
-        <path d="M136 236 L190 238" strokeWidth="9" />
-        <path d="M212 234 C 230 216, 256 216, 270 230" strokeWidth="9" />
-        {/* smirk */}
-        <path d="M166 328 C 186 354, 228 352, 246 332" strokeWidth="10" />
+      <g fill="none" stroke={limb} strokeWidth="14" strokeLinecap="round">
+        <path d={p.seated ? "M80 180 L78 218" : "M82 184 L74 238"} />
+        <path d={p.seated ? "M112 180 L118 216" : "M112 184 L124 235"} />
       </g>
+      {p.seated ? (
+        <>
+          <ellipse cx="76" cy="226" rx="16" ry="8.5" fill={dark} transform="rotate(12 76 226)" />
+          <ellipse cx="122" cy="224" rx="16" ry="8.5" fill={dark} transform="rotate(-12 122 224)" />
+        </>
+      ) : (
+        <>
+          <ellipse cx="79" cy="247" rx="16" ry="8.5" fill={dark} />
+          <ellipse cx="133" cy="243" rx="16" ry="8.5" fill={dark} transform="rotate(-14 133 243)" />
+        </>
+      )}
+
+      {/* arms */}
+      <g fill="none" stroke={limb} strokeWidth="11" strokeLinecap="round">
+        {p.arms.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </g>
+
+      <g transform="rotate(-6 100 135)">
+        {/* note and its folded corner */}
+        <path fill="#ff606a" d="M53 80 H147 a8 8 0 0 1 8 8 V160 L125 190 H53 a8 8 0 0 1 -8 -8 V88 a8 8 0 0 1 8 -8 Z" />
+        <path fill={limb} d="M155 160 L125 190 L125 168 a8 8 0 0 1 8 -8 Z" />
+
+        {/* face */}
+        <circle cx="84" cy="126" r="12" fill={eye} />
+        <circle cx="118" cy="126" r="12" fill={eye} />
+        <circle cx={88 + dx} cy={123 + dy} r="6" fill={dark} />
+        <circle cx={122 + dx} cy={123 + dy} r="6" fill={dark} />
+        <circle cx={90 + dx} cy={121 + dy} r="2" fill={eye} />
+        <circle cx={124 + dx} cy={121 + dy} r="2" fill={eye} />
+        <g fill="none" stroke={dark} strokeWidth="4" strokeLinecap="round">
+          <path d="M74 106 Q 83 100 92 104" />
+          <path d="M110 102 Q 120 97 129 103" />
+          {p.smile && <path d="M91 152 Q 101 159 111 152" />}
+        </g>
+        {!p.smile && <path fill={dark} d="M88 149 Q 101 153 114 149 Q 110 166 101 166 Q 92 166 88 149 Z" />}
+        <ellipse cx="68" cy="146" rx="6" ry="4" fill="#ffa3a9" />
+        <ellipse cx="134" cy="146" rx="6" ry="4" fill="#ffa3a9" />
+      </g>
+    </svg>
+  );
+}
+
+// The two hands of the "peek" pose, gripping the edge. Same viewBox as the
+// figure, so giving both the same box lines them up; this one goes in front of
+// whatever the figure hides behind.
+export function PeekHands({ className }: { className: string }) {
+  return (
+    <svg className={className} viewBox={poses.peek.viewBox} aria-hidden="true">
+      <rect x="22" y="131" width="27" height="17" rx="8.5" fill={limb} transform="rotate(-8 35 139)" />
+      <rect x="154" y="125" width="27" height="17" rx="8.5" fill={limb} transform="rotate(-4 167 133)" />
     </svg>
   );
 }

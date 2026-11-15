@@ -1,4 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
+import { Mascot } from "@/components/Mascot";
 
 const copy = {
   en: { h1: ["This page", "does not exist."], lead: "The address may be wrong, or the page may have moved.", back: "Go to home page", to: "/" },
@@ -16,7 +17,8 @@ const NotFound = () => {
           <path d="M0 90 q40 -22 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0" />
           <path d="M0 362 q60 26 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" />
         </svg>
-        <div className="container">
+        <div className="container hero-grid">
+          <div>
           <span className="badge">404</span>
           <h1>
             {t.h1[0]}
@@ -27,6 +29,8 @@ const NotFound = () => {
           <div className="hero-actions">
             <Link className="btn btn-primary" to={t.to}>{t.back}</Link>
           </div>
+          </div>
+          <Mascot />
         </div>
       </main>
     </div>

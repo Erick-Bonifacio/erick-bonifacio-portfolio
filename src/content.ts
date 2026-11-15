@@ -112,25 +112,20 @@ const en = {
         repo: "", // public repository URL; the "view code" link shows only when set
         tags: ["React", "Flask", "PostgreSQL", "Vercel"],
       },
-      {
-        title: "Nutrition landing page",
-        text: "Static site for a nutritionist, with presentation, background and contact sections. Built with React and hosted on Vercel.",
-        img: "/nutri-lp.webp",
-        alt: "Screenshot of the nutrition landing page",
-        href: "https://matheus-izidro-nutri-lp.vercel.app/",
-        repo: "", // public repository URL; the "view code" link shows only when set
-        tags: ["React", "Vercel"],
-      },
     ],
   },
   more: {
     eyebrow: "Background",
     h2: "Education and more.",
-    cards: [
-      { label: "Education", title: "B.S. in Information Systems", text: "Federal University of Itajubá (UNIFEI)", meta: "Mar 2023 – Jul 2027 (expected)" },
-      { label: "Extracurricular", title: "UNIFEI Entrepreneurship Center (CEU)", text: "Led Cria, an introductory entrepreneurship event for young people in the Itajubá community.", meta: "" },
-      { label: "Languages", title: "Portuguese and English", text: "Portuguese: native. English: upper-intermediate, used daily with international teams and clients.", meta: "" },
-    ],
+    education: { label: "Education", degree: "B.S. in", field: "Information Systems", text: "Federal University of Itajubá (UNIFEI)", meta: "Mar 2023 – Jul 2027 (expected)" },
+    languages: {
+      label: "Languages",
+      items: [
+        { name: "Portuguese", level: "Native." },
+        { name: "English", level: "Upper-intermediate, used daily with international teams and clients." },
+      ],
+    },
+    extra: { label: "Extracurricular", title: "UNIFEI Entrepreneurship Center (CEU)", text: "Led Cria, an introductory entrepreneurship event for young people in the Itajubá community." },
   },
   contact: {
     eyebrow: "Contact",
@@ -245,25 +240,20 @@ const pt: typeof en = {
         repo: "", // public repository URL; the "view code" link shows only when set
         tags: ["React", "Flask", "PostgreSQL", "Vercel"],
       },
-      {
-        title: "Landing page nutricional",
-        text: "Site estático para um nutricionista, com seções de apresentação, formação e contato. Feito com React e hospedado na Vercel.",
-        img: "/nutri-lp.webp",
-        alt: "Captura de tela da landing page nutricional",
-        href: "https://matheus-izidro-nutri-lp.vercel.app/",
-        repo: "", // public repository URL; the "view code" link shows only when set
-        tags: ["React", "Vercel"],
-      },
     ],
   },
   more: {
     eyebrow: "Trajetória",
     h2: "Formação e mais.",
-    cards: [
-      { label: "Formação", title: "Bacharelado em Sistemas de Informação", text: "Universidade Federal de Itajubá (UNIFEI)", meta: "03/2023 – 07/2027 (previsão)" },
-      { label: "Extracurricular", title: "Centro de Empreendedorismo da UNIFEI (CEU)", text: "Liderei o Cria, evento de introdução ao empreendedorismo para jovens da comunidade de Itajubá.", meta: "" },
-      { label: "Idiomas", title: "Português e inglês", text: "Português: nativo. Inglês: intermediário-avançado, com uso diário com times e clientes internacionais.", meta: "" },
-    ],
+    education: { label: "Formação", degree: "Bacharelado em", field: "Sistemas de Informação", text: "Universidade Federal de Itajubá (UNIFEI)", meta: "03/2023 – 07/2027 (previsão)" },
+    languages: {
+      label: "Idiomas",
+      items: [
+        { name: "Português", level: "Nativo." },
+        { name: "Inglês", level: "Intermediário-avançado, com uso diário com times e clientes internacionais." },
+      ],
+    },
+    extra: { label: "Extracurricular", title: "Centro de Empreendedorismo da UNIFEI (CEU)", text: "Liderei o Cria, evento de introdução ao empreendedorismo para jovens da comunidade de Itajubá." },
   },
   contact: {
     eyebrow: "Contato",

@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { SimpleThemeToggle } from "@/components/SimpleThemeToggle";
-import { Mascot } from "@/components/Mascot";
-import { ProjectDeck } from "@/components/ProjectDeck";
+import { Mascot, PeekHands } from "@/components/Mascot";
+import { ProjectCarousel } from "@/components/ProjectCarousel";
 import { content, links } from "@/content";
 
-// Section title with its closing period in coral.
-const H2 = ({ children }: { children: string }) => (
-  <h2>
-    {children.slice(0, -1)}
-    <span className="dot">{children.slice(-1)}</span>
+// Section title with its closing period in coral; `pointer` adds the mascot pointing at it.
+const H2 = ({ children, pointer = false }: { children: string; pointer?: boolean }) => (
+  <h2 className={pointer ? "pointed" : undefined}>
+    <span>
+      {children.slice(0, -1)}
+      <span className="dot">{children.slice(-1)}</span>
+    </span>
+    {pointer && <Mascot className="pointer" pose="point" />}
   </h2>
 );
 
@@ -84,25 +87,28 @@ export default function Portfolio() {
 
         <section className="section" id="experience">
           <div className="container">
+            <Mascot className="walker" />
             <p className="eyebrow">{t.experience.eyebrow}</p>
             <H2>{t.experience.h2}</H2>
             <p className="section-lead">{t.experience.lead}</p>
-            <ol className="timeline section-body">
+            <ol className="job-list">
               {t.experience.items.map((job) => (
-                <li key={job.title}>
-                  <span className="mono">{job.date}</span>
-                  <p className="timeline-title">{job.title}</p>
-                  {job.note && <p className="timeline-note">{job.note}</p>}
+                <li className="job" key={job.title}>
+                  <div>
+                    <span className="mono">{job.date}</span>
+                    <p className="job-title">{job.title}</p>
+                    {job.note && <p className="job-note">{job.note}</p>}
+                    <div className="tags">
+                      {job.tags.map((tag) => (
+                        <span className="tag" key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
                   <ul className="bullets">
                     {job.bullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
-                  <div className="tags">
-                    {job.tags.map((tag) => (
-                      <span className="tag" key={tag}>{tag}</span>
-                    ))}
-                  </div>
                 </li>
               ))}
             </ol>
@@ -113,24 +119,36 @@ export default function Portfolio() {
           <div className="container">
             <p className="eyebrow">{t.skills.eyebrow}</p>
             <H2>{t.skills.h2}</H2>
-            <div className="grid-3 section-body">
+            <div className="skill-wrap section-body">
+              <Mascot className="sitter" pose="sit" />
+            <dl className="skill-list">
               {t.skills.groups.map((group) => (
-                <div className="card" key={group.label}>
-                  <p className="card-label">{group.label}</p>
-                  <p>{group.text}</p>
+                <div className="skill-row" key={group.label}>
+                  <dt>{group.label}</dt>
+                  <dd>{group.text}</dd>
                 </div>
               ))}
+            </dl>
             </div>
           </div>
         </section>
 
         <section className="section" id="projects">
+          <svg className="waves" viewBox="0 0 960 400" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 22 q40 -22 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0" />
+            <path d="M0 380 q60 26 120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0 t120 0" />
+          </svg>
           <div className="container">
-            <p className="eyebrow">{t.projects.eyebrow}</p>
-            <H2>{t.projects.h2}</H2>
-            <div className="deck-wrap section-body">
-              <ProjectDeck items={t.projects.items} labels={t.projects} />
-            </div>
+            <ProjectCarousel
+              items={t.projects.items}
+              labels={t.projects}
+              header={
+                <>
+                  <p className="eyebrow">{t.projects.eyebrow}</p>
+                  <H2>{t.projects.h2}</H2>
+                </>
+              }
+            />
           </div>
         </section>
 
@@ -138,15 +156,35 @@ export default function Portfolio() {
           <div className="container">
             <p className="eyebrow">{t.more.eyebrow}</p>
             <H2>{t.more.h2}</H2>
-            <div className="grid-3 section-body">
-              {t.more.cards.map((card) => (
-                <div className="card" key={card.label}>
-                  <p className="card-label">{card.label}</p>
-                  <p className="card-title">{card.title}</p>
-                  <p>{card.text}</p>
-                  {card.meta && <span className="mono">{card.meta}</span>}
-                </div>
-              ))}
+            <div className="bento section-body">
+              <Mascot className="peeker" pose="peek" />
+              <PeekHands className="peeker peeker-hands" />
+              <div className="card bento-main">
+                <p className="card-label">{t.more.education.label}</p>
+                <p className="bento-big">
+                  {t.more.education.degree}
+                  <br />
+                  <span>{t.more.education.field}</span>
+                </p>
+                <p className="bento-sub">{t.more.education.text}</p>
+                <span className="mono">{t.more.education.meta}</span>
+              </div>
+              <div className="card">
+                <p className="card-label">{t.more.extra.label}</p>
+                <p className="card-title">{t.more.extra.title}</p>
+                <p>{t.more.extra.text}</p>
+              </div>
+              <div className="card">
+                <p className="card-label">{t.more.languages.label}</p>
+                <dl className="bento-langs">
+                  {t.more.languages.items.map((item) => (
+                    <div key={item.name}>
+                      <dt>{item.name}</dt>
+                      <dd>{item.level}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </div>
           </div>
         </section>
@@ -156,7 +194,7 @@ export default function Portfolio() {
             <div className="grid-2">
             <div>
               <p className="eyebrow">{t.contact.eyebrow}</p>
-              <H2>{t.contact.h2}</H2>
+              <H2 pointer>{t.contact.h2}</H2>
               <p className="contact-text">{t.contact.text}</p>
               <div className="hero-actions">
                 <a className="btn btn-primary" href={`mailto:${links.email}`}>{t.contact.primary}</a>
@@ -178,7 +216,7 @@ export default function Portfolio() {
       <div className="container">
         <footer className="footer">
           <div className="footer-brand">
-            <span className="app-icon" />
+            <Mascot className="mascot-mini" />
             {t.footer}
           </div>
           <nav className="footer-links">

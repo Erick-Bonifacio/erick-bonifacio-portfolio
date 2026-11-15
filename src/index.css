@@ -133,13 +133,14 @@
   --text-2: #4a557a;
   --text-3: #545d7a;
 
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", ui-serif, Georgia, serif;
   --font-sans: "Geist", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
 
-  --space-section: 92px;
+  --space-section: 68px;
   --space-hero-top: 84px;
-  --space-hero-bottom: 120px;
+  --space-hero-bottom: 92px;
   --space-gutter: 24px;
   --space-faq: 22px;
   --space-btn-x: 22px;
@@ -195,9 +196,10 @@ body { background: var(--bg); }
 .ds .section-plain { background: var(--bg); }
 .ds .section-deep { background: var(--bg-deep); }
 
-.ds h1, .ds h2, .ds h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.02; margin: 0; color: var(--text); }
+.ds h1, .ds h2, .ds h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; line-height: 1.02; margin: 0; color: var(--text); }
 /* Smaller than the system's clamp(56px, 9vw, 104px): the second line is a job title, not two words. */
-.ds h1 { font-size: clamp(44px, 7.5vw, 88px); }
+/* The hero title is the one place that keeps the serif, with its italic second line. */
+.ds h1 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(44px, 7.5vw, 88px); }
 .ds h1 em { font-weight: 500; font-style: italic; }
 .ds h2 { font-size: clamp(36px, 5vw, 56px); }
 .ds h3 { font-size: 24px; line-height: 1.05; }
@@ -215,7 +217,7 @@ body { background: var(--bg); }
 .ds .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 1; max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px var(--space-gutter); font: 500 14px/1 var(--font-sans); }
 .ds .nav-links { display: flex; gap: 28px; }
 .ds .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
-.ds .nav-logo { font: 600 20px/1 var(--font-serif); letter-spacing: -0.02em; }
+.ds .nav-logo { font: 700 20px/1 var(--font-display); letter-spacing: -0.02em; }
 .ds .nav-actions { display: flex; align-items: center; gap: 10px; }
 .ds .theme-toggle, .ds .lang-toggle { height: 36px; min-width: 36px; border-radius: var(--r-tile); border: 1px solid currentColor; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; }
 .ds .lang-toggle { padding: 0 10px; font: 600 12px/1 var(--font-sans); letter-spacing: 0.06em; }
@@ -241,22 +243,16 @@ body { background: var(--bg); }
 .ds .card { background: var(--card); border-radius: var(--r-md); padding: var(--space-gutter); box-shadow: var(--shadow-card); }
 .ds .card-label { font: 600 12px/1 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); margin: 0 0 16px; }
 .ds .card p { font-size: 15px; }
-.ds .card-title { font: 600 20px/1.3 var(--font-serif); color: var(--text); margin: 0 0 8px; }
+.ds .card-title { font: 700 20px/1.3 var(--font-display); color: var(--text); margin: 0 0 8px; }
 .ds .card .mono { display: block; margin-top: 12px; }
 
 .ds .grid-2, .ds .grid-3, .ds .stats { display: grid; gap: var(--space-gutter); }
 .ds .grid-2 { grid-template-columns: repeat(2, 1fr); }
 .ds .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .ds .stats { grid-template-columns: repeat(4, 1fr); }
-.ds .stat-n { font: 600 clamp(28px, 3.4vw, 40px)/1.05 var(--font-serif); letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; white-space: nowrap; }
+.ds .stat-n { font: 700 clamp(28px, 3.4vw, 40px)/1.05 var(--font-display); letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; white-space: nowrap; }
 .ds .stat p:last-child { font-size: 15px; }
 
-.ds .timeline { list-style: none; margin: 48px 0 0; padding: 0 0 0 28px; border-left: 1px solid var(--border); max-width: var(--measure-faq); }
-.ds .timeline > li { position: relative; padding: 0 0 48px; }
-.ds .timeline > li:last-child { padding-bottom: 0; }
-.ds .timeline > li::before { content: ""; position: absolute; left: -34px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg-alt), 0 0 0 4px var(--accent-strong); }
-.ds .timeline-title { font: 600 20px/1.3 var(--font-serif); color: var(--text); margin: 4px 0 8px; }
-.ds .timeline-note { font-size: 13px; color: var(--text-3); }
 .ds .bullets { list-style: disc; margin: 16px 0; padding-left: 18px; color: var(--text-2); font-size: 15px; }
 .ds .bullets li { margin-bottom: 8px; }
 .ds .bullets li::marker { color: var(--text-3); }
@@ -273,14 +269,14 @@ body { background: var(--bg); }
 .ds .contact-text { margin: 16px 0 28px; max-width: 420px; }
 
 .ds .footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 32px 0; }
-.ds .footer-brand { display: flex; align-items: center; gap: 10px; font: italic 400 15px/1.55 var(--font-serif); color: var(--text-2); }
+.ds .footer-brand { display: flex; align-items: center; gap: 10px; font: 400 14px/1.55 var(--font-sans); color: var(--text-2); }
 .ds .app-icon { width: 22px; height: 22px; border-radius: var(--r-icon); background: var(--brand); }
 .ds .footer-links { display: flex; gap: 24px; font: 400 14px/1 var(--font-sans); }
 .ds .footer-links a { color: var(--text-2); }
 .ds .footer-links a:hover { color: var(--text); }
 
 @media (max-width: 860px) {
-  :root { --space-section: 64px; --r-hero: 32px; --space-hero-bottom: 72px; }
+  :root { --space-section: 52px; --r-hero: 32px; --space-hero-bottom: 64px; }
   .ds .nav-links { display: none; }
   .ds .grid-2, .ds .grid-3 { grid-template-columns: 1fr; }
   .ds .stats { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
@@ -323,29 +319,6 @@ body { background: var(--bg); }
   .ds .mascot { width: 130px; justify-self: end; margin-top: -24px; }
 }
 
-/* Projects deck: every card shares one grid cell, so the deck is as tall as
-   the tallest card. data-pos says where a card sits relative to the front. */
-.ds #projects { overflow: hidden; }
-.ds .deck-wrap { max-width: 680px; margin-left: auto; margin-right: auto; }
-.ds .deck { display: grid; padding: 0 60px 30px 0; touch-action: pan-y; user-select: none; }
-.ds .deck-card { grid-area: 1 / 1; border-color: var(--border); transform-origin: 50% 100%; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s; }
-.ds .deck-card[data-pos="0"] { z-index: 4; }
-.ds .deck-card[data-pos="1"] { z-index: 3; transform: translate(30px, 14px) rotate(2.5deg); cursor: pointer; }
-.ds .deck-card[data-pos="2"] { z-index: 2; transform: translate(60px, 28px) rotate(5deg); cursor: pointer; }
-.ds .deck-card[data-pos="back"] { z-index: 1; transform: translate(60px, 28px) rotate(5deg); opacity: 0; pointer-events: none; }
-.ds .deck-card[data-pos="out"] { z-index: 5; transform: translate(-90px, 10px) rotate(-9deg); opacity: 0; pointer-events: none; }
-.ds .deck-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px; padding-right: 60px; }
-.ds .deck-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-strong); background: none; color: var(--text); font: 500 18px/1 var(--font-sans); cursor: pointer; transition: border-color 0.15s, background 0.15s; }
-.ds .deck-btn:hover { border-color: var(--accent); background: var(--overlay); }
-.ds .deck-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.ds .deck-controls .mono { min-width: 56px; text-align: center; }
-@media (max-width: 860px) {
-  .ds .deck { padding: 0 28px 16px 0; }
-  .ds .deck-controls { padding-right: 28px; }
-  .ds .deck-card[data-pos="1"] { transform: translate(14px, 8px) rotate(2deg); }
-  .ds .deck-card[data-pos="2"], .ds .deck-card[data-pos="back"] { transform: translate(28px, 16px) rotate(4deg); }
-}
-@media (prefers-reduced-motion: reduce) { .ds .deck-card { transition: none; } }
 
 /* Fixed top bar, so the section links stay reachable while scrolling.
    Below 860px the links collapse into a menu opened by the last button. */
@@ -359,4 +332,102 @@ html { scroll-padding-top: 80px; }
   .ds .menu-toggle { display: grid; }
   .ds .nav-links.open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--brand); padding: 0 var(--space-gutter) 12px; border-radius: 0 0 var(--r-lg) var(--r-lg); }
   .ds .nav-links.open a { padding: 16px 0; font-size: 16px; border-top: 1px solid rgba(244, 235, 221, 0.18); }
+}
+
+/* Skills: an editorial list, one row per area, instead of boxes. */
+.ds .skill-list { margin-bottom: 0; border-top: 1px solid var(--border); }
+.ds .skill-row { display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: baseline; padding: var(--space-faq) 0; border-bottom: 1px solid var(--border); }
+.ds .skill-row dt { font: 700 22px/1.2 var(--font-display); letter-spacing: -0.01em; color: var(--text); }
+.ds .skill-row dd { margin: 0; color: var(--text-2); max-width: 680px; }
+
+/* Projects: native horizontal scroll with snap. */
+.ds .carousel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+.ds .carousel-controls { display: flex; gap: 12px; }
+.ds .round-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-strong); background: none; color: var(--text); font: 500 18px/1 var(--font-sans); cursor: pointer; transition: border-color 0.15s, background 0.15s, opacity 0.15s; }
+.ds .round-btn:hover:not(:disabled) { border-color: var(--accent); background: var(--overlay); }
+.ds .round-btn:disabled { opacity: 0.35; cursor: default; }
+.ds .round-btn:focus-visible, .ds .carousel:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+/* the padding leaves room for the card shadows, which overflow would clip */
+.ds .carousel { display: flex; gap: 24px; list-style: none; margin: 40px -8px 0; padding: 8px 8px 36px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 8px; scroll-behavior: smooth; scrollbar-width: none; }
+.ds .carousel::-webkit-scrollbar { display: none; }
+.ds .carousel > li { flex: 0 0 min(460px, 78vw); display: flex; scroll-snap-align: start; }
+.ds .carousel .card { width: 100%; }
+.ds #projects { padding-bottom: calc(var(--space-section) - 36px); }
+/* Projects sit on a band of the hero blue, so the page is not cream from the
+   hero down. The cards stay light; their tags alternate pastel coral and
+   pastel blue, and each card carries a coral rule on top. */
+.ds #projects { background: var(--brand); position: relative; overflow: hidden; }
+.ds #projects h2, .ds #projects .eyebrow { color: var(--on-brand); }
+.ds #projects .round-btn { border-color: var(--on-brand); color: var(--on-brand); }
+.ds #projects .round-btn:hover:not(:disabled) { border-color: var(--accent); background: rgba(255, 255, 255, 0.14); }
+.ds #projects .round-btn:focus-visible, .ds #projects .carousel:focus-visible { outline-color: var(--on-brand); }
+.ds #projects .card { border-top: 3px solid var(--accent); }
+.ds #projects .tag { color: var(--text); background: color-mix(in srgb, var(--accent) 24%, transparent); }
+.ds #projects .tag:nth-child(even) { background: color-mix(in srgb, var(--brand-text) 16%, transparent); }
+@media (max-width: 860px) {
+  .ds .skill-row { grid-template-columns: 1fr; gap: 6px; }
+  .ds .carousel-controls { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ds .carousel { scroll-behavior: auto; } }
+
+/* Experience: one full-width row per job. Role, dates and stack on the left,
+   what was done on the right. Same two-column rhythm as the skills list. */
+.ds .job-list { list-style: none; margin: 48px 0 0; padding: 0; border-top: 1px solid var(--border); }
+.ds .job { display: grid; grid-template-columns: 320px 1fr; gap: 56px; padding: 40px 0; border-bottom: 1px solid var(--border); }
+.ds .job-title { font: 700 24px/1.2 var(--font-display); letter-spacing: -0.01em; color: var(--text); margin: 8px 0; }
+.ds .job-note { font-size: 13px; line-height: 1.5; color: var(--text-3); }
+.ds .job .tags { margin-top: 20px; }
+.ds .job .bullets { margin: 0; font-size: 16px; }
+.ds .job .bullets li { margin-bottom: 12px; }
+.ds .job .bullets li:last-child { margin-bottom: 0; }
+@media (max-width: 860px) { .ds .job { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; } }
+
+/* Education and more: bento grid. The degree is the large full-width panel;
+   two smaller cards sit side by side below it. */
+.ds .bento { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ds .bento .card { border-radius: var(--r-icon); border-color: var(--border); padding: 24px 28px; }
+.ds .bento .card:hover { border-color: var(--accent); }
+/* Squarer, more finished panels: a coral tab on the top edge, and the label
+   set off by the eyebrow's square marker and a hairline rule. */
+.ds .bento .card::before { content: ""; position: absolute; top: -1px; left: 28px; width: 40px; height: 3px; background: var(--accent); }
+.ds .bento .card-label { display: flex; align-items: center; gap: 8px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.ds .bento .card-label::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); }
+.ds .card.bento-main { grid-column: 1 / -1; }
+/* `.ds .card p` sets 15px, so these need the extra class to win */
+.ds .card p.card-title { font-size: 18px; margin-bottom: 4px; }
+.ds .card p.bento-big { font: 700 28px/1.15 var(--font-display); letter-spacing: -0.01em; color: var(--text); margin: 0 0 10px; }
+.ds .card p.bento-sub { font-size: 15px; }
+/* The field of study in the accent coral, as asked. On the cream card that is
+   2.6:1, below the 3:1 guideline for large text; --accent-strong passes. */
+.ds .bento-big span { color: var(--accent); }
+.ds .bento-langs { margin: 0; display: grid; gap: 10px; }
+.ds .bento-langs dt { font: 700 18px/1.3 var(--font-display); color: var(--text); }
+.ds .bento-langs dd { margin: 2px 0 0; font-size: 15px; color: var(--text-2); }
+@media (max-width: 860px) {
+  .ds .bento { grid-template-columns: 1fr; }
+}
+
+/* The mascot outside the hero, kept small: one stands on the top edge of a
+   section, at the left above its title; one sits on the skills list; one points at
+   the contact title; a tiny one sits in the footer. */
+.ds .section > .container { position: relative; }
+.ds .walker { position: absolute; left: var(--space-gutter); top: calc(-1 * var(--space-section)); width: 54px; height: auto; transform: translateY(calc(-100% + 3px)); opacity: 0.9; pointer-events: none; }
+.ds h2.pointed { display: flex; align-items: flex-end; gap: 14px; }
+.ds .pointer { width: 50px; height: auto; flex: none; margin-bottom: 4px; }
+/* Seated on the top rule of the skills list. The rule sits 123/175 of the way
+   down the figure, so top = -(123/175) * width. */
+.ds .skill-wrap { position: relative; }
+.ds .sitter { position: absolute; right: 32px; top: -45px; width: 64px; height: auto; pointer-events: none; }
+/* Coming up from behind the education boxes at the right: the top half shows
+   above the top box, and the hands layer sits in front of its edge. */
+.ds .bento { position: relative; }
+.ds .bento .card { position: relative; z-index: 1; }
+.ds .peeker { position: absolute; z-index: 0; right: 48px; top: -65px; width: 150px; height: auto; pointer-events: none; }
+.ds .peeker-hands { z-index: 2; }
+.ds .mascot-mini { width: 26px; height: auto; flex: none; }
+@media (max-width: 860px) {
+  .ds .sitter { right: 12px; top: -34px; width: 48px; }
+  .ds .peeker { right: 20px; top: -42px; width: 96px; }
+  .ds .walker { width: 42px; }
+  .ds .pointer { width: 38px; margin-bottom: 2px; }
 }
