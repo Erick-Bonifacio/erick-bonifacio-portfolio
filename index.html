@@ -18,7 +18,7 @@
       (function () {
         var root = document.documentElement, saved = null;
         try { saved = localStorage.getItem("theme"); } catch (e) {}
-        if (saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches) root.classList.add("dark");
+        if (saved === "dark") root.classList.add("dark");
         if (new URLSearchParams(location.search).get("lang") === "pt") root.lang = "pt-BR";
       })();
     </script>

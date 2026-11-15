@@ -431,3 +431,19 @@ html { scroll-padding-top: 80px; }
   .ds .walker { width: 42px; }
   .ds .pointer { width: 38px; margin-bottom: 2px; }
 }
+
+/* Phones: the desktop type scale is too loud in a 360-430px column, so the
+   display sizes and the gaps under the titles step down. */
+@media (max-width: 600px) {
+  .ds h1 { font-size: 36px; }
+  .ds h2 { font-size: 28px; }
+  .ds h3 { font-size: 20px; }
+  .ds .lead { font-size: 16px; }
+  .ds .stat-n { font-size: 24px; }
+  .ds .job-title { font-size: 20px; }
+  .ds .job .bullets { font-size: 15px; }
+  .ds .skill-row dt { font-size: 18px; }
+  .ds .card p.bento-big { font-size: 22px; }
+  .ds .section-body, .ds .job-list { margin-top: 32px; }
+  .ds .carousel { margin-top: 28px; }
+}
