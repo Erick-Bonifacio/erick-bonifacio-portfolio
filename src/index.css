@@ -105,3 +105,258 @@
     scroll-behavior: smooth;
   }
 }
+/* ---------------------------------------------------------------------------
+   Azul & Coral design system. Tokens from the system's tokens.json, classes
+   from its components/bundle.css, plus the few layout helpers this page needs.
+   Dark theme hangs off the `.dark` class that SimpleThemeToggle sets on <html>.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --brand: #0e359d;
+  --on-brand: #f4ebdd;
+  --accent: #ff606a;
+  --on-accent: #0a1a4a;
+  --accent-strong: #c0283b;
+  --brand-text: #0e359d;
+  --action: #0e359d;
+  --on-action: #ffffff;
+  --focus: #0e359d;
+  --bg: #f4ebdd;
+  --bg-alt: #efe4d3;
+  --bg-deep: #e7dac6;
+  --surface: #efe4d3;
+  --card: #f4ebdd;
+  --overlay: rgba(14, 53, 157, 0.07);
+  --border: rgba(14, 53, 157, 0.14);
+  --border-strong: #5f6988;
+  --text: #0a1a4a;
+  --text-2: #4a557a;
+  --text-3: #545d7a;
+
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "Geist", "Geist Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+
+  --space-section: 92px;
+  --space-hero-top: 84px;
+  --space-hero-bottom: 120px;
+  --space-gutter: 24px;
+  --space-faq: 22px;
+  --space-btn-x: 22px;
+  --space-btn-y: 12px;
+  --space-tag-x: 9px;
+  --space-tag-y: 3px;
+  --space-gap: 8px;
+
+  --r-pill: 99px;
+  --r-hero: 56px;
+  --r-lg: 24px;
+  --r-md: 16px;
+  --r-tile: 10px;
+  --r-sm: 9px;
+  --r-icon: 6px;
+
+  --shadow-card: 0 1px 2px rgba(10, 26, 74, 0.08), 0 14px 28px -16px rgba(10, 26, 74, 0.28);
+
+  --container: 1120px;
+  --measure: 560px;
+  --measure-wide: 640px;
+  --measure-faq: 760px;
+}
+
+.dark {
+  --accent-strong: #ff606a;
+  --brand-text: #9db3ff;
+  --action: #ff606a;
+  --on-action: #0a1a4a;
+  --focus: #9db3ff;
+  --bg: #080d1c;
+  --bg-alt: #0d1428;
+  --bg-deep: #050814;
+  --surface: #0c1224;
+  --card: #151d38;
+  --overlay: rgba(220, 230, 255, 0.08);
+  --border: rgba(220, 230, 255, 0.12);
+  --border-strong: #8791b0;
+  --text: #f2f5fc;
+  --text-2: #a3acc7;
+  --text-3: #8791b0;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 14px 28px -16px rgba(0, 0, 0, 0.8);
+}
+
+body { background: var(--bg); }
+
+.ds { font: 400 17px/1.55 var(--font-sans); color: var(--text); -webkit-font-smoothing: antialiased; }
+.ds p { color: var(--text-2); margin: 0; }
+.ds a { color: inherit; text-decoration: none; }
+.ds a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.ds .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--space-gutter); }
+.ds .section { padding: var(--space-section) 0; background: var(--bg-alt); }
+.ds .section-plain { background: var(--bg); }
+.ds .section-deep { background: var(--bg-deep); }
+
+.ds h1, .ds h2, .ds h3 { font-family: var(--font-serif); font-weight: 600; letter-spacing: -0.02em; line-height: 1.02; margin: 0; color: var(--text); }
+/* Smaller than the system's clamp(56px, 9vw, 104px): the second line is a job title, not two words. */
+.ds h1 { font-size: clamp(44px, 7.5vw, 88px); }
+.ds h1 em { font-weight: 500; font-style: italic; }
+.ds h2 { font-size: clamp(36px, 5vw, 56px); }
+.ds h3 { font-size: 24px; line-height: 1.05; }
+.ds .eyebrow { font: 600 12px/1 var(--font-sans); letter-spacing: 0.09em; text-transform: uppercase; color: var(--brand-text); margin: 0 0 var(--space-btn-y); }
+.ds .lead { font-size: 19px; max-width: var(--measure); }
+.ds .section-lead { max-width: var(--measure-wide); margin-top: 16px; }
+.ds .mono { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); }
+.ds .section-body { margin-top: 48px; }
+
+.ds .hero { position: relative; overflow: hidden; background: var(--brand); color: var(--on-brand); border-radius: 0 0 var(--r-hero) var(--r-hero); padding: calc(var(--space-hero-top) + 40px) 0 var(--space-hero-bottom); }
+.ds .hero h1, .ds .hero p { color: var(--on-brand); }
+.ds .hero h1 { margin: 20px 0; }
+.ds .hero .container { position: relative; }
+.ds .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.ds .nav { position: absolute; top: 0; left: 0; right: 0; z-index: 1; max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px var(--space-gutter); font: 500 14px/1 var(--font-sans); }
+.ds .nav-links { display: flex; gap: 28px; }
+.ds .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ds .nav-logo { font: 600 20px/1 var(--font-serif); letter-spacing: -0.02em; }
+.ds .nav-actions { display: flex; align-items: center; gap: 10px; }
+.ds .theme-toggle, .ds .lang-toggle { height: 36px; min-width: 36px; border-radius: var(--r-tile); border: 1px solid currentColor; background: none; color: inherit; display: grid; place-items: center; cursor: pointer; }
+.ds .lang-toggle { padding: 0 10px; font: 600 12px/1 var(--font-sans); letter-spacing: 0.06em; }
+.ds .theme-toggle:hover, .ds .lang-toggle:hover { background: rgba(255, 255, 255, 0.14); }
+.ds .waves { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ds .waves path { fill: none; stroke: var(--accent); stroke-width: 1; opacity: 0.55; vector-effect: non-scaling-stroke; }
+
+.ds .btn { display: inline-flex; align-items: center; gap: var(--space-gap); padding: var(--space-btn-y) var(--space-btn-x); border-radius: var(--r-pill); font: 600 14px/1 var(--font-sans); border: 1px solid var(--action); cursor: pointer; background: none; }
+.ds .btn:focus-visible, .ds .theme-toggle:focus-visible, .ds .lang-toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ds .btn-primary { background: var(--action); color: var(--on-action); }
+.ds .btn-ghost { border-color: var(--border-strong); color: var(--text); }
+.ds .btn-ghost:hover { background: var(--overlay); }
+.ds .hero .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.ds .hero .btn-ghost { border-color: var(--on-brand); color: var(--on-brand); }
+.ds .hero .btn-ghost:hover { background: rgba(255, 255, 255, 0.14); }
+.ds .hero a:focus-visible, .ds .hero button:focus-visible { outline: 2px solid var(--on-brand); outline-offset: 2px; }
+
+.ds .badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--r-pill); background: var(--overlay); color: var(--text); font: 600 12px/1 var(--font-sans); }
+.ds .hero .badge { background: rgba(255, 255, 255, 0.14); color: var(--on-brand); }
+.ds .tag { display: inline-block; background: var(--overlay); border-radius: var(--r-pill); padding: var(--space-tag-y) var(--space-tag-x); font: 400 12px/1.5 var(--font-sans); color: var(--text-2); }
+.ds .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.ds .card { background: var(--card); border-radius: var(--r-md); padding: var(--space-gutter); box-shadow: var(--shadow-card); }
+.ds .card-label { font: 600 12px/1 var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-2); margin: 0 0 16px; }
+.ds .card p { font-size: 15px; }
+.ds .card-title { font: 600 20px/1.3 var(--font-serif); color: var(--text); margin: 0 0 8px; }
+.ds .card .mono { display: block; margin-top: 12px; }
+
+.ds .grid-2, .ds .grid-3, .ds .stats { display: grid; gap: var(--space-gutter); }
+.ds .grid-2 { grid-template-columns: repeat(2, 1fr); }
+.ds .grid-3 { grid-template-columns: repeat(3, 1fr); }
+.ds .stats { grid-template-columns: repeat(4, 1fr); }
+.ds .stat-n { font: 600 clamp(28px, 3.4vw, 40px)/1.05 var(--font-serif); letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; white-space: nowrap; }
+.ds .stat p:last-child { font-size: 15px; }
+
+.ds .timeline { list-style: none; margin: 48px 0 0; padding: 0 0 0 28px; border-left: 1px solid var(--border); max-width: var(--measure-faq); }
+.ds .timeline > li { position: relative; padding: 0 0 48px; }
+.ds .timeline > li:last-child { padding-bottom: 0; }
+.ds .timeline > li::before { content: ""; position: absolute; left: -34px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg-alt), 0 0 0 4px var(--accent-strong); }
+.ds .timeline-title { font: 600 20px/1.3 var(--font-serif); color: var(--text); margin: 4px 0 8px; }
+.ds .timeline-note { font-size: 13px; color: var(--text-3); }
+.ds .bullets { list-style: disc; margin: 16px 0; padding-left: 18px; color: var(--text-2); font-size: 15px; }
+.ds .bullets li { margin-bottom: 8px; }
+.ds .bullets li::marker { color: var(--text-3); }
+
+.ds .project-img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: var(--r-sm); border: 1px solid var(--border); margin-bottom: 20px; }
+.ds .project p { margin: 10px 0 16px; }
+.ds .text-link { display: inline-block; margin-top: 16px; font: 600 14px/1 var(--font-sans); color: var(--brand-text); }
+.ds .text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+.ds .checklist { list-style: none; margin: 0; padding: 0; }
+.ds .checklist li { display: flex; gap: 12px; padding: var(--space-faq) 0; border-bottom: 1px solid var(--border); color: var(--text); overflow-wrap: anywhere; }
+.ds .checklist li::before { content: "→"; color: var(--accent-strong); }
+.ds .checklist a:hover { color: var(--brand-text); }
+.ds .contact-text { margin: 16px 0 28px; max-width: 420px; }
+
+.ds .footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 32px 0; }
+.ds .footer-brand { display: flex; align-items: center; gap: 10px; font: italic 400 15px/1.55 var(--font-serif); color: var(--text-2); }
+.ds .app-icon { width: 22px; height: 22px; border-radius: var(--r-icon); background: var(--brand); }
+.ds .footer-links { display: flex; gap: 24px; font: 400 14px/1 var(--font-sans); }
+.ds .footer-links a { color: var(--text-2); }
+.ds .footer-links a:hover { color: var(--text); }
+
+@media (max-width: 860px) {
+  :root { --space-section: 64px; --r-hero: 32px; --space-hero-bottom: 72px; }
+  .ds .nav-links { display: none; }
+  .ds .grid-2, .ds .grid-3 { grid-template-columns: 1fr; }
+  .ds .stats { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+  .ds .hero { padding-top: 104px; }
+}
+
+/* 404: the hero block alone, filling the screen. */
+.ds .hero-full { min-height: 100vh; border-radius: 0; display: flex; align-items: center; padding: var(--space-section) 0; }
+.ds .hero-full .container { width: 100%; }
+
+/* More coral than the system's "seasoning" rule, but in details only, never
+   as large filled blocks: italic hero line, waves, primary buttons, rules,
+   markers and hover states. Text on coral is always --on-accent (navy). */
+::selection { background: var(--accent); color: var(--on-accent); }
+.ds .hero { z-index: 1; }
+.ds .hero h1 em { color: var(--accent); }
+.ds .waves path { stroke-width: 1.5; opacity: 0.8; }
+.ds .eyebrow::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); margin-right: 8px; }
+.ds .bullets li::marker { color: var(--accent); }
+.ds .text-link { color: var(--accent-strong); }
+.ds .app-icon { background: var(--accent); }
+
+
+/* Coral details. Primary buttons are coral in both themes. */
+:root { --action: #ff606a; --on-action: #0a1a4a; }
+.ds .stat { border-top: 2px solid var(--accent); padding-top: 20px; }
+.ds h2 .dot { color: var(--accent); }
+.ds .card { border: 1px solid transparent; transition: border-color 0.15s; }
+.ds .card:hover { border-color: var(--accent); }
+.ds .checklist li::before { color: var(--accent); }
+.ds .nav-links a:hover, .ds .footer-links a:hover, .ds .checklist a:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.ds .checklist a:hover { color: inherit; }
+.ds .theme-toggle:hover, .ds .lang-toggle:hover { border-color: var(--accent); }
+
+/* Mascot to the right of the name in the hero. */
+.ds .hero-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 48px; }
+.ds .mascot { width: clamp(200px, 24vw, 300px); height: auto; display: block; }
+@media (max-width: 860px) {
+  .ds .hero-grid { grid-template-columns: 1fr; gap: 8px; }
+  .ds .mascot { width: 130px; justify-self: end; margin-top: -24px; }
+}
+
+/* Projects deck: every card shares one grid cell, so the deck is as tall as
+   the tallest card. data-pos says where a card sits relative to the front. */
+.ds #projects { overflow: hidden; }
+.ds .deck-wrap { max-width: 680px; margin-left: auto; margin-right: auto; }
+.ds .deck { display: grid; padding: 0 60px 30px 0; touch-action: pan-y; user-select: none; }
+.ds .deck-card { grid-area: 1 / 1; border-color: var(--border); transform-origin: 50% 100%; transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s; }
+.ds .deck-card[data-pos="0"] { z-index: 4; }
+.ds .deck-card[data-pos="1"] { z-index: 3; transform: translate(30px, 14px) rotate(2.5deg); cursor: pointer; }
+.ds .deck-card[data-pos="2"] { z-index: 2; transform: translate(60px, 28px) rotate(5deg); cursor: pointer; }
+.ds .deck-card[data-pos="back"] { z-index: 1; transform: translate(60px, 28px) rotate(5deg); opacity: 0; pointer-events: none; }
+.ds .deck-card[data-pos="out"] { z-index: 5; transform: translate(-90px, 10px) rotate(-9deg); opacity: 0; pointer-events: none; }
+.ds .deck-controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 28px; padding-right: 60px; }
+.ds .deck-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-strong); background: none; color: var(--text); font: 500 18px/1 var(--font-sans); cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.ds .deck-btn:hover { border-color: var(--accent); background: var(--overlay); }
+.ds .deck-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.ds .deck-controls .mono { min-width: 56px; text-align: center; }
+@media (max-width: 860px) {
+  .ds .deck { padding: 0 28px 16px 0; }
+  .ds .deck-controls { padding-right: 28px; }
+  .ds .deck-card[data-pos="1"] { transform: translate(14px, 8px) rotate(2deg); }
+  .ds .deck-card[data-pos="2"], .ds .deck-card[data-pos="back"] { transform: translate(28px, 16px) rotate(4deg); }
+}
+@media (prefers-reduced-motion: reduce) { .ds .deck-card { transition: none; } }
+
+/* Fixed top bar, so the section links stay reachable while scrolling.
+   Below 860px the links collapse into a menu opened by the last button. */
+html { scroll-padding-top: 80px; }
+.ds .nav { position: fixed; display: block; max-width: none; margin: 0; padding: 0; z-index: 10; background: var(--brand); color: var(--on-brand); }
+.ds .nav-inner { position: relative; max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px var(--space-gutter); }
+.ds .nav a:focus-visible, .ds .nav button:focus-visible { outline: 2px solid var(--on-brand); outline-offset: 2px; }
+.ds .menu-toggle { display: none; }
+.ds .project-links { display: flex; gap: 20px; flex-wrap: wrap; }
+@media (max-width: 860px) {
+  .ds .menu-toggle { display: grid; }
+  .ds .nav-links.open { display: flex; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--brand); padding: 0 var(--space-gutter) 12px; border-radius: 0 0 var(--r-lg) var(--r-lg); }
+  .ds .nav-links.open a { padding: 16px 0; font-size: 16px; border-top: 1px solid rgba(244, 235, 221, 0.18); }
+}
